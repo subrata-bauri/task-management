@@ -14,7 +14,7 @@ const Login = ({ onSubmit, onSwitchMode }) => {
   const [formData, setFormData] = useState(INITIAL_FORM);
 
   const navigate = useNavigate();
-  const url = "https://personal-task-tracker-app-backend.onrender.com/";
+  const url = "https://task-management-43cx.onrender.com/";
   // const url = "http://localhost:4000/";
 
   useEffect(() => {

@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 // const API_BASE = "http://localhost:4000/api/tasks";
-const API_BASE = "https://personal-task-tracker-app-backend.onrender.com/api/tasks";
+const API_BASE = "https://task-management-43cx.onrender.com/api/tasks";
 
 const TaskModal = ({ isOpen, onClose, taskToEdit, onSave, onLogout }) => {
   const [taskData, setTaskData] = useState(DEFAULT_TASK);

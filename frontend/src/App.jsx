@@ -29,7 +29,7 @@ const App = () => {
     (async () => {
       try {
         const res = await fetch(
-          "https://personal-task-tracker-app-backend.onrender.com/api/user/me",
+          "https://task-management-43cx.onrender.com/api/user/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
