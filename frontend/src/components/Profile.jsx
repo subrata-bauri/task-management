@@ -20,9 +20,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-const API_URL = "https://task-management-43cx.onrender.com";
-// const API_URL = "http://localhost:4000/";
+import { buildApiUrl } from "../config/api";
 
 const Profile = ({ setCurrentUser, onLogout }) => {
   const [showPassword, setShowpassword] = useState(false);
@@ -38,7 +36,7 @@ const Profile = ({ setCurrentUser, onLogout }) => {
     const token = localStorage.getItem("token");
     if (!token) return;
     axios
-      .get(`${API_URL}api/user/me`, {
+      .get(buildApiUrl("/api/user/me"), {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(({ data }) => {
@@ -54,7 +52,7 @@ const Profile = ({ setCurrentUser, onLogout }) => {
     try {
       const token = localStorage.getItem("token");
       const { data } = await axios.put(
-        `${API_URL}api/user/profile`,
+        buildApiUrl("/api/user/profile"),
         { name: profile.name, email: profile.email },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -81,7 +79,7 @@ const Profile = ({ setCurrentUser, onLogout }) => {
     try {
       const token = localStorage.getItem("token");
       const { data } = await axios.put(
-        `${API_URL}api/user/password`,
+        buildApiUrl("/api/user/password"),
         { currentPassword: passwords.current, newPassword: passwords.new },
         { headers: { Authorization: `Bearer ${token}` } },
       );
@@ -90,7 +88,7 @@ const Profile = ({ setCurrentUser, onLogout }) => {
         setPasswords({ current: "", new: "", confirm: "" });
       } else toast.error(data.message);
     } catch (error) {
-      toast.error(err.response?.data?.message || "Password change failed");
+      toast.error(error.response?.data?.message || "Password change failed");
     }
   };
 

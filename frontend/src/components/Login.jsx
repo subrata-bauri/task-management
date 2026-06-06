@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { BUTTONCLASSES, INPUTWRAPPER } from "../assets/dummy";
 import axios from "axios";
+import { buildApiUrl } from "../config/api";
 
 const INITIAL_FORM = { email: "", password: "" };
 
@@ -14,8 +15,6 @@ const Login = ({ onSubmit, onSwitchMode }) => {
   const [formData, setFormData] = useState(INITIAL_FORM);
 
   const navigate = useNavigate();
-  const url = "https://task-management-43cx.onrender.com/";
-  // const url = "http://localhost:4000/";
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -23,7 +22,7 @@ const Login = ({ onSubmit, onSwitchMode }) => {
     if (token) {
       (async () => {
         try {
-          const { data } = await axios.get(`${url}api/user/me`, {
+          const { data } = await axios.get(buildApiUrl("/api/user/me"), {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (data.success) {
@@ -49,7 +48,7 @@ const Login = ({ onSubmit, onSwitchMode }) => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post(`${url}api/user/login`, formData);
+      const { data } = await axios.post(buildApiUrl("/api/user/login"), formData);
       if (!data.token) throw new Error(data.message || "Login Failed");
 
       localStorage.setItem("token", data.token);

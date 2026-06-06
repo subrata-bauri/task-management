@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import PendingPage from "./pages/PendingPage";
 import CompletePage from "./pages/CompletePage";
 import Profile from "./components/Profile";
+import { buildApiUrl } from "./config/api";
 
 const App = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const App = () => {
     (async () => {
       try {
         const res = await fetch(
-          "https://task-management-43cx.onrender.com/api/user/me",
+          buildApiUrl("/api/user/me"),
           {
             headers: {
               Authorization: `Bearer ${token}`,

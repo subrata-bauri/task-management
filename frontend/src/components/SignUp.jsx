@@ -7,9 +7,7 @@ import {
   MESSAGE_SUCCESS,
 } from "../assets/dummy";
 import axios from "axios";
-
-const API_URL = "https://task-management-43cx.onrender.com";
-// const API_URL = "http://localhost:4000";
+import { buildApiUrl } from "../config/api";
 const INITIAL_FORM = { name: "", email: "", password: "" };
 
 const Signup = ({ onSwitchMode }) => {
@@ -25,7 +23,7 @@ const Signup = ({ onSwitchMode }) => {
 
     try {
       const { data } = await axios.post(
-        `${API_URL}/api/user/register`,
+        buildApiUrl("/api/user/register"),
         formData,
       );
       console.log("Signup Successfull", data);
